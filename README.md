@@ -1,3 +1,5 @@
+When using this code please refer to and cite the paper: ------------------------------------------
+
 # Modular_DES
 Mitigation of power system cascading failure using modular discrtete event systems
 There are two main parts for this work: 
