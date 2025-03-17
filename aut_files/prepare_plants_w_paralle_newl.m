@@ -12,7 +12,7 @@ ps_agents = set_up_agents(ps,opt);
 
 
 
-for t =275:300
+for t =1:300
 
   % we want to find the neighboring buses and all connected components
   ps_agents(t).loc_nei;
