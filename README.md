@@ -14,6 +14,7 @@ Preperation of supervisors based on the modular control approach of the power sy
     [https://ieeexplore.ieee.org/document/4605933] )
     These operations are performed using the matlab files that use LibFAUDES library using MEX 
     After supervisors are synthesized, another Matlab file (Supervisors_Matlab_info_general.m) transform the supervisors to directed graphs format in Matlab. 
+    Note: faudes.dll file need to be copied to the aut_files folders to enable the use of libfaudes library. also you may need to modify the header files directory in the        cpp files. 
 
 #Part 2: 
 employing the synthsized superviros into the smulations of power systems cascading failure using sim_files folder
