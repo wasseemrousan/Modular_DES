@@ -34,7 +34,7 @@ end
 
 
 
-for i =227:300
+for i =1:300
 
 
 S = readlines('syn_6_compsynth.cpp');
