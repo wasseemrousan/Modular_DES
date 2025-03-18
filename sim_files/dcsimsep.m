@@ -223,30 +223,7 @@ while true
                 % should we open controller or takecontrolactions ? 
                 [ps, this_MW_lost, mis] = DEScentral(ps,sub_grids,ramp_rate,opt,'dc',currentstates,outputtreeObject,Npointer,pre_contingency_flows,br_outages); % this to be more worked on 
 
-                % invoke current string of states as an input for this
-                % function 
-                
-                %takecontrolactions % maybe need to add the emergency
-                %control function here, Central control can be added from
-                % AcSemSepMaster 
-                % another way is also to use the same as Central control
-                % and to invoke takecontrolactions function from emergency
-                % control function 
-                
-                
-                
-                
-%% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-% Wasseem 06/14/2021, Maybe we can implement DES Modualr control in similar
-% manner to DES Central
-          case 'DESModularcontrol' % Wasseem 11/24/2019, use this part to start calling the LLP algoritm
-                disp ('well use DES Modular CONTROL')
-                % should we open controller or takecontrolactions ? 
-                % information related to DES Modular supervisor needs to be
-                % added 
-                [ps, this_MW_lost, mis] = DESModular(ps,sub_grids,ramp_rate,opt,'dc',currentstates,Npointer,pre_contingency_flows,br_outages); % this to be more worked on 
-
-%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
+             
             otherwise
                 error('Undefined control method.')
         end

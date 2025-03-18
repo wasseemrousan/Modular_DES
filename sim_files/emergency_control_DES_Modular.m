@@ -6,15 +6,9 @@ dPg = zeros(size(ps_agent.gen(:,1)));
 dPd = zeros(size(ps_agent.shunt(:,1)));
 
 global pattern;
-% pattern = [currentstates{1,:}];
 pattern = currentstates; 
   
-                %% ###############################################################################################################
-                % بسم الله الرحمن الرحيم
-                % 2/8/2023 : اعادة كتابة OPTIMIZATION PROBLEM IS REWRITTEN
-                % TO BE MODULAR - Wasseem Al Rousan
-                % ###############################################################################################################
-                    
+                                    
                 %% 1 st : collect some data from each agent => need verification (all of the lines)
                 
                 C = psconstants;
@@ -115,8 +109,8 @@ pattern = currentstates;
               Pd0 = ps_agent.shunt(ish,C.sh.P).*ps_agent.shunt(ish,C.sh.factor) ./ ps_agent.baseMVA;
               FACTOR = 1; % factor used to reduce the step down of the generators/loads
               %% Wasseem 01/19/2023 => how to find the index for label [the most loaded line in the neighborhood]
-                                                  % 1st build y matrix and incidence matrix then remove
-                                    % unrelated lines and nodes to the neghiborhood from it 
+                                        % 1st build y matrix and incidence matrix then remove
+                                        % unrelated lines and nodes to the neghiborhood from it 
                                         C = psconstants; % tells me where to find my data
                                         % psorig = case300_2;  % take the MATPOWER Format of the case study 
                                         psorig = load('psorig.mat');  % take this cleaned up version of the matpower format of the IEEE 300 bus sytesm 
@@ -126,8 +120,7 @@ pattern = currentstates;
                                         As = makeIncidence(psorig.psorig.bus, psorig.psorig.branch)';
                                         % convert sparse matrix into full matrix 
                                         A = full(As)'; % A is the isdence matrix
-                    %                     A(:,31) = []; 
-                    %                     A(:,32) = [];
+                    
                                         nbr_all_branches = [1:size(psorig.psorig.branch,1)]';
                                         br_idcomp =  nbr_all_branches(~ismember(nbr_all_branches,br_id)); % find the branches that are not in the neighborhood
                                         index_neghoborhood_buses = full(OptVarBus_I);
@@ -145,15 +138,7 @@ pattern = currentstates;
                                                 index_type_bus = zeros(1,(nd+ng));
                                         end   
 
-                                        % we shouldn't use psorig in code sgemnt below becaus ethere some mismatch between psorig 300_ps use cases 
-                                        % for h = 1:(size(index_neghoborhood_buses,1))
-                                        %     if (C.psorig.bus(index_neghoborhood_buses(h),2) == 3 || psorig.psorig.bus(index_neghoborhood_buses(h),2) == 2)
-                                        %         index_type_bus(h) = 1; % generator bus
-                                        %     else
-                                        %         index_type_bus(h) = 2; % Load bus 
-                                        %     end
-                                        % end
-
+                                        
                                         
                                         for h = 1:(size(index_neghoborhood_buses,1))
                                             if ~isempty(find(ps_agent.gen(:,1)==index_neghoborhood_buses(h), 1))
@@ -229,9 +214,6 @@ pattern = currentstates;
                         
                              if ps_agent.bus_id < 10 % W IS BUS NUMBER TO BE FIXED LATER ON 
                             
-                            %                 disp(currentstates{1,w})
-                            %                 disp('start state is')
-                            %                 disp(currentstates{1,w})
                                                  supuservisorname = ['supervisor00',num2str(ps_agent.bus_id)]; 
                                                  SupInfo = load(['Bus00',num2str(ps_agent.bus_id),'supData']); 
                                                  endstates = SupervisorIterator(SupInfo,currentstates{1,ps_agent.bus_id},supuservisorname); % Wasssem 10/21/2021; use the extended supervisor instead
@@ -280,27 +262,13 @@ pattern = currentstates;
                         %% Constraints
  
                                         Aineq = [(sqrt(yt)*pinv(Atelda'));f_new_trimmed]; % the decision needs to be taken must be realted to the overlaoding quantity Maybe new optimaztion problem  
-                                        % a seperate 2 vectors out of x
-                                        % needs to be extacted, one for
-                                        % generators, the other for loads
-                                        % for A_const
-                                        % if ~isempty(intersect(genbusidx,shuntbusidx)) % Wasseem 24/1/2024
-                                        %         A_const = ones(1,((nd+ng)-size(intersect(genbusidx,shuntbusidx),1)));
-                                        % else
-                                        %         A_const = ones(1,(nd+ng));
-                                        % end   
+                                          
                                         buscounter = size(full(OptVarBus_I),1); % lets use this counter size instead of the one below for now
    
                                         A_const = ones(1,buscounter);                                
                                            x_ig_index = 1; 
                                            x_ish_index = 1; 
-                                           % if ~isempty(intersect(genbusidx,shuntbusidx)) % Wasseem 24/1/2024
-                                           %   buscounter = (nd+ng)-size(intersect(genbusidx,shuntbusidx),1);
-                                           % 
-                                           % else
-                                           %    buscounter = (nd+ng);
-                                           % 
-                                           % end
+                                           
 
                                            for k =1:(buscounter)
             
@@ -346,9 +314,7 @@ pattern = currentstates;
                                         disp('x_min and x_max bounds are set')
                                         x_min_boundary = -ones(1,(buscounter));
                                         x_max_boundary = -0.000.*ones(1,(buscounter));
-%                                         x_min_boundary(ix.dPg) = [-ps_agent.gen(ig,C.ge.ramp_rate_down); repmat(-ramp_limits(ig),Np-1,1)]; % ramping for the first time step is limited based on the agent information
-                                        % set correct x_min limits for
-                                        % generator buses
+%                                        
                                         gen_index = 1;
                                         Ld_index = 1; 
                                         gen_bus_num = zeros(1,ng);
@@ -368,7 +334,6 @@ pattern = currentstates;
                                             gen_number(r) = find(ps_agent.gen(:,1) == gen_bus_num(r));
                                         end
 
-                                        %~isempty(find(ps_agent.gen(:,1)==index_neghoborhood_buses(h), 1))
                                         
                                         Load_bus_num = zeros(1,(nd));
                                         Ld_bus_num_indx = 1; 
@@ -424,18 +389,9 @@ pattern = currentstates;
                                         load_loc = setdiff(load_loc,efv);
                                         for sz = 1:(buscounter)
                                             if index_type_bus(sz) == 1
-                                                % x_min_boundary(sz) = ramp_limits((gen_number(gen_index)))*ps_agent.capacity.Pg; 
-                                                % x_min_boundary(sz) = 0; 
-                                                %x_min_boundary(sz)= x_max_boundary(sz)*-1; 
-                                                % x_min_boundary(sz)= -ramp_limits((gen_number(gen_index)))*ps_agent.capacity.Pg*ps_agent.gen(gen_number(gen_index),2); 
-                                                % x_min_boundary(sz)= -(ps_agent.capacity.Pg/ramp_limits((gen_number(gen_index)))); 
-                                                % if -ps_agent.gen(gen_number(gen_index),2) >= x_min_boundary(sz) 
-                                                %     x_min_boundary(sz) = -( ps_agent.gen(gen_number(gen_index),2))/ramp_limits((gen_number(gen_index)));
-                                                % end
-                                                
+                                                                                                
                                                 x_min_boundary(sz) = -ramp_limits((gen_number(gen_index)))*ps_agent.gen(gen_index,C.ge.status)./ ps_agent.baseMVA;
                                                 
-                                                % ##### borrowed from the function taken from the simulator #####
                                                 x_min_boundary(sz) = -ps_agent.gen(gen_loc(gen_index),C.ge.ramp_rate_down)./ ps_agent.baseMVA;
                                                 x_min_boundary(sz) = min((Pg_min(find(gen_loc(gen_index)==find(ig==1))) - Pg0(find(gen_loc(gen_index)==find(ig==1))))/FACTOR,0);
                                                 if ismember(ps_agent.gen(gen_loc(gen_index),1),zax) 
@@ -486,18 +442,11 @@ pattern = currentstates;
 
                                         end
                                         
-%                                         Pd_cap = ps_agent.shunt((Load_nmbr(Ld_index)),C.sh.P).*sf_cap;
 
-                    %                     options = optimoptions("fmincon",...
-                    %                         "Algorithm","interior-point",...
-                    %                         "EnableFeasibilityMode",true,...
-                    %                         "SubproblemAlgorithm","cg");
-                    %                     x = fmincon(@(nd)fun(nd,ng),xo,Aineq,bineq,Aconst,bconst,x_min,x_max,[],options) 
            
                                          x = fmincon(fun,xo,Aineq,bineq,Aconst,bconst,x_min_boundary,x_max_boundary,[],options) 
                     
-                    %                     f = ones(1,(nd+ng));
-                    %                     x = linprog(f,xo,Aineq,bineq,Aconst,bconst,x_min,x_max)
+                   
 
 
                                  % initialize dPg and dPd
@@ -509,9 +458,7 @@ pattern = currentstates;
                                x_ig_index = 1; 
                                x_ish_index = 1; 
                                       
-                               % genbusidx = ps_agent.gen(find(ig==1),1);
                                genbusidx = gen_loc;
-                               % shuntbusidx = ps_agent.shunt(find(ish==1),1);
                                shuntbusidx_new = load_loc;
                                for k =1:size(x,2)
 
@@ -535,12 +482,7 @@ pattern = currentstates;
                                 dPg(ig) = dPg(ig) * ps_agent.baseMVA;
                                 dPd(ish) = dPd(ish) * ps_agent.baseMVA;
                                 disp('assigning optimal solution to related buses in neighborhood')
-%                                 if sum(dPg)==0 || sum(dPd)==0
-%                                     dPg = 0;
-%                                     dPd = 0;
-%                                 end
 
-%                                 break % break the for loop that goes over the endstates
                     end
 
               end

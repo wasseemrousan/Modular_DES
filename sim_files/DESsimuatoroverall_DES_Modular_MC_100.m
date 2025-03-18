@@ -118,10 +118,7 @@ global pattern;
 global sigmaFl;
 global uFt;
 
-Treesregister = {}; 
-% i in  N-1  , N-2  , N-3  Cases the 10 load samples need to be discretised
-% to take as much as possible of the loads for eaxmple: we'l have 10 means
-% (us) that cover the regio between [max min] with 10 variance for each u 
+
 
 %% +++++++++++++++++++++++++++++++10++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
 % generate 1000 samples of loads and use them for all cases, we will need to
@@ -230,10 +227,6 @@ for i = 1:100
    %% after that, we will take the tree construction process inside the 
    
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
-% get the tree objects one by one 
-% outputtreeObject = Treesregister{1,i}{1,1}{1,1}{1,1};
-% Npointer = Treesregister{1,i}{1,1}{1,1}{1,2};
-% Npointer in DES modular will point to current state for each supervisor 
 Npointer = currentstatefortest;
 %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%
    % we  will add another for loop to change the loading conditions 

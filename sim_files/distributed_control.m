@@ -64,11 +64,7 @@ for bus_i_f = 1:nbus
                 [delta_Pd, delta_Pg] = solve_mpc_emergency(ps_agents(bus_i_f),OptVarBus_I,ramp_limits,opt);
             else
                 if opt.sim.use_DESModular  % here we added our method of modular DES we use at first same as emergency_control_dec for trial
-                    %% 07/26/2021 Wasseem: We may need to start omplemnting the method used for IEEE 6-Bus system here and not in the central control, we also need to make ps_agent as global vraible to evaluate it 
-                     % need to adjust a new function for
-                     % emergency_control_DES_Modular and pass the new
-                     % written functions like : 
-                     OptVarBus_I = ps_agents(bus_i_f).bus_i(OptVarBusID);
+                    OptVarBus_I = ps_agents(bus_i_f).bus_i(OptVarBusID);
                     [delta_Pd,delta_Pg] = emergency_control_DES_Modular(ps_agents(bus_i_f),OptVarBus_I,opt,currentstates,ramp_limits,br_over_id);
 
                 else
