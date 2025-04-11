@@ -1,6 +1,7 @@
 This code is free to use for research purpose, and available via the GNU Public License. If you find this useful in your research, please cite the publication listed below.
 
-Wasseem Al-Rousan, Caisheng Wang, and Feng Lin,"Modular Control of Discrete Event System for Modeling and Mitigating Power System Cascading Failures". Journal name, vol. , year . 
+Wasseem Al-Rousan, Caisheng Wang, and Feng Lin,"Modular Control of Discrete Event System for Modeling and Mitigating Power System Cascading Failures". arXiv, 2025. [https://doi.org/10.48550/arXiv.2504.07496]
+ 
 
 # Modular_DES
 Mitigation of power system cascading failure using modular discrtete event systems
