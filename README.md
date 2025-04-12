@@ -21,7 +21,7 @@ Preperation of supervisors based on the modular control approach of the power sy
 employing the synthsized superviros into the smulations of power systems cascading failure using sim_files folder
   the file DESsimuatoroverall_DES_Modular_MC_100.m peform Monte Carlo (MC) simulations of the casacding failure process with and without control 
   one of the control methods used is the DES modular control:
-  After prearing teh supervisors in Part 1 above, the superviros are used using supervisors iterators files in the modular control approach. 
+  After preparing teh supervisors in Part 1 above, the superviros are used using supervisors iterators files in the modular control approach. 
   The casacding failure simualtion is absed on the DCSIMSEP and ACSIMSEP algorithms can be found on [https://github.com/phines/acsimsep] 
   changes were added in the distibuted control file where we added our approach
   
