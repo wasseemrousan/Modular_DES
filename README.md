@@ -13,9 +13,13 @@ Preperation of supervisors based on the modular control approach of the power sy
     First the power system components are translated into automatas , then parallel operation , specification then supervisors synthesis operations are performed
     these operations are performed by using LibFAUDES C++ library (more info can be found on  [https://fgdes.tf.fau.de/faudes/faudes_about.html]  and   
     [https://ieeexplore.ieee.org/document/4605933] )
-    These operations are performed using the matlab files that use LibFAUDES library using MEX, an example of using mex command: 
+    These operations are performed using the matlab files that use LibFAUDES library using MEX, an example of using mex command
+    
                       mex -lfaudes -L"D:\IEEE_300_Bus\libFAUDES" Automaton.cpp
-    which is located in createautomatas.m file, after Automaton.cpp is compiled into mex format , it can be used iteratively as a function to generate Automatas for the all      the power system components as illstrated in the paper for all the lines, generators and loads in the given case study of the power system. The Automatas of all buses in     the systems and associated components with each bus are preapred using he file : prepare_plants_w_paralle_newl.m. In similar way, specifications Auotomatas and    Supervisors Automatas are prepared. 
+                      
+    which is located in createautomatas.m file, after Automaton.cpp is compiled into mex format , it can be used iteratively as a function to generate Automatas for the all      the power system components as illstrated in the paper for all the lines, generators and loads in the given case study of the power system. The Automatas of all buses in     the systems and associated components with each bus are preapred using he file : prepare_plants_w_paralle_newl.m. In similar way, specifications Auotomatas and     Supervisors Automatas are prepared. 
+    
+    
     After supervisors are synthesized, another Matlab file (Supervisors_Matlab_info_general.m) transform the supervisors to directed graphs format in Matlab. 
     Note: faudes.dll file need to be copied to the aut_files folders to enable the use of libfaudes library. also you may need to modify the header files directory in the        cpp files. 
 The "off-line" operations on DES can be summrized in Fig. 1 below
