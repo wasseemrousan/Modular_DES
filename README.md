@@ -18,7 +18,8 @@ Preperation of supervisors based on the modular control approach of the power sy
     Note: faudes.dll file need to be copied to the aut_files folders to enable the use of libfaudes library. also you may need to modify the header files directory in the        cpp files. 
 The "off-line" operations on DES can be summrized in Fig. 1 below
 
-<img width="381" height="659" alt="flowchart_1" src="https://github.com/user-attachments/assets/e5c874d8-515f-43b3-a4b8-e9cf51a4cd2b" />
+<img width="200" height="350" alt="flowchart_1" src="https://github.com/user-attachments/assets/e5c874d8-515f-43b3-a4b8-e9cf51a4cd2b" />
+
 Fig. 1. Flowchart of the supervisor synthesis procedure
 
 #Part 2: 
@@ -31,6 +32,7 @@ employing the synthsized superviros into the smulations of power systems cascadi
 
   The overall co-simulation of both DES and power systems can be summrized in Fig. 2 below. 
 
-  <img width="1035" height="2269" alt="flowchart_2" src="https://github.com/user-attachments/assets/a6b8576e-1144-4299-bdb3-65f2ecadcc3e" />
+  <img width="500" height="1000" alt="flowchart_2" src="https://github.com/user-attachments/assets/a6b8576e-1144-4299-bdb3-65f2ecadcc3e" />
+  
   Fig. 2. Flowchart of the implementation of the modular DES controller
 
