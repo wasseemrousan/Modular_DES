@@ -18,7 +18,12 @@ Preperation of supervisors based on the modular control approach of the power sy
     
                         mex -lfaudes -L"D:\IEEE_300_Bus\libFAUDES" Automaton.cpp
                       
-   which is located in createautomatas.m file, after Automaton.cpp is compiled into mex format , it can be used iteratively as a function to generate Automatas for the all      the power system components as illstrated in the paper for all the lines, generators and loads in the given case study of the power system. The Automatas of all buses in     the systems and associated components with each bus are preapred using he file : prepare_plants_w_paralle_newl.m. In similar way, specifications Auotomatas and     Supervisors Automatas are prepared. 
+   which is located in createautomatas.m file. 
+   After Automaton.cpp is compiled into mex format , it can be used iteratively as a function to generate Automatas for the all the power system components as illstrated in the paper for all the lines, generators and loads in the given case study of the power system. 
+   
+   The Automatas of all buses in the systems and associated components with each bus are preapred using he file : *prepare_plants_w_paralle_newl.m*
+   
+   In similar way, specifications Auotomatas and Supervisors Automatas are prepared. 
     
     
   ### Second 
