@@ -9,8 +9,8 @@ There are two main parts for this work:
 
 # Part 1: 
 Preperation of supervisors based on the modular control approach of the power system using aut_files folder
-   ## the files required to prepare the supervisors can be found under the aut_files folder
-   ## First 
+   ### the files required to prepare the supervisors can be found under the aut_files folder
+   ### First 
    the power system components are translated into automatas , then parallel operation , specification then supervisors synthesis operations are performed
    these operations are performed by using LibFAUDES C++ library (more info can be found on  [https://fgdes.tf.fau.de/faudes/faudes_about.html]  and   
    [https://ieeexplore.ieee.org/document/4605933] )
@@ -21,7 +21,7 @@ Preperation of supervisors based on the modular control approach of the power sy
    which is located in createautomatas.m file, after Automaton.cpp is compiled into mex format , it can be used iteratively as a function to generate Automatas for the all      the power system components as illstrated in the paper for all the lines, generators and loads in the given case study of the power system. The Automatas of all buses in     the systems and associated components with each bus are preapred using he file : prepare_plants_w_paralle_newl.m. In similar way, specifications Auotomatas and     Supervisors Automatas are prepared. 
     
     
-  ## Second 
+  ### Second 
   After supervisors are synthesized, another Matlab file (Supervisors_Matlab_info_general.m) transform the supervisors to directed graphs format in Matlab. 
   
   Note: faudes.dll file need to be copied to the aut_files folders to enable the use of libfaudes library. also you may need to modify the header files directory in the        cpp files. 
